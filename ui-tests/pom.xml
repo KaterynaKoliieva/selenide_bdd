@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>selenide-junit5-archetype</artifactId>
+    <groupId>org.selenide</groupId>
+    <version>1.0.0</version>
+  </parent>
+<!--  <groupId>com.example</groupId>-->
+<!--  <artifactId>ui-tests</artifactId>-->
+<!--  <version>1.0-SNAPSHOT</version>-->
+
+  <!--<my version start>-->
+
+  <groupId>com.epam.jdi</groupId>
+  <artifactId>jdi-bdd-tests</artifactId>
+  <version>1.4.4</version>
+  <name>Tests: JDI BDD</name>
+
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <webdriver.version>5.3.1</webdriver.version>
+    <jdi.version>1.4.4</jdi.version>
+    <jetty.version>9.4.12.RC2</jetty.version>
+    <aspectj.args></aspectj.args>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <aspectj.version>1.9.7</aspectj.version>
+    <allure.maven>2.10.0</allure.maven>
+    <driver>chrome</driver>
+</properties>
+<!--<my version end>-->
+
+  <dependencies>
+    <dependency>
+      <groupId>com.codeborne</groupId>
+      <artifactId>selenide</artifactId>
+      <version>4.14.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.3.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>5.3.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jul-to-slf4j</artifactId>
+      <version>1.7.25</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.3</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!--<my version start>-->
+<!--    <dependency>-->
+<!--      <groupId>com.epam.jdi</groupId>-->
+<!--      <artifactId>jdi-uitest-web</artifactId>-->
+<!--      <version>LATEST</version>-->
+<!--    </dependency>-->
+    <dependency>
+      <groupId>com.epam.jdi</groupId>
+      <artifactId>jdi-bdd</artifactId>
+      <version>${jdi.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>info.cukes</groupId>
+      <artifactId>cucumber-junit</artifactId>
+      <version>1.2.6</version>
+    </dependency>
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-cucumber-jvm</artifactId>
+      <version>2.13.8</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-compiler-plugin</artifactId>
+      <version>3.10.1</version>
+    </dependency>
+        <dependency>
+          <groupId>io.github.bonigarcia</groupId>
+          <artifactId>webdrivermanager</artifactId>
+          <version>${webdriver.version}</version>
+          <scope>compile</scope>
+        </dependency>
+    <!--<my version end>-->
+  </dependencies>
+
+
+  <build>
+    <plugins>
+
+      <!--my version start-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.2.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!--Allure reporting config in parent-->
+      <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>${jetty.version}</version>
+      </plugin>
+      <!--my version end-->
+
+      <plugin>
+        <!--my version start-->
+        <groupId>org.apache.maven.plugins</groupId>
+        <!--my version end-->
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.2</version>
+        <configuration>
+          <systemPropertyVariables>
+            <junit.jupiter.extensions.autodetection.enabled>true</junit.jupiter.extensions.autodetection.enabled>
+            <selenide.browser>${driver}</selenide.browser><!--added-->
+            <selenide.timeout>4000</selenide.timeout>
+            <!--<selenide.baseUrl>http://localhost:8080/gui</selenide.baseUrl>-->
+            <selenide.startMaximized>true</selenide.startMaximized>
+            <selenide.fastSetValue>true</selenide.fastSetValue>
+            <!--<selenide.browserSize>1920x1080</selenide.browserSize>-->
+          </systemPropertyVariables>
+          <trimStackTrace>false</trimStackTrace>
+
+         <!--my version start-->
+            <argLine>
+              ${aspectj.args}
+              -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+              -Dcucumber.options="--plugin io.qameta.allure.cucumberjvm.AllureCucumberJvm"
+            </argLine>
+          <!--my version end-->
+
+        </configuration>
+
+        <!--my version start-->
+        <dependencies>
+          <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+        <version>${allure.maven}</version>
+      <!--my version end-->
+
+      </plugin>
+    </plugins>
+
+    <!--my version start-->
+    <resources>
+      <resource>
+        <directory>${project.basedir}/src/test/resources</directory>
+      </resource>
+      <resource>
+        <directory>src/test/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    <!--my version end-->
+
+
+  </build>
+
+  <!-- my version start-->
+  <reporting>
+    <excludeDefaults>true</excludeDefaults>
+    <plugins>
+      <plugin>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+      </plugin>
+    </plugins>
+  </reporting>
+  <!--my version end-->
+
+
+</project>
