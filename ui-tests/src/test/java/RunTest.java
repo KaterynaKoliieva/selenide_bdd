@@ -1,5 +1,3 @@
-package cucumberTests;
-
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
@@ -8,11 +6,12 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "classpath:features",
         glue = {"com.epam.jdi.bdd", "cucumberTests"},
+//        glue = "stepdefs",
         tags = "@LogInTest, @LogOutTest, @RegistrationTest, @ShoppingCartTest"
 )
 
 
-public class TestRunner {
+public class RunTest {
 }
 
 
