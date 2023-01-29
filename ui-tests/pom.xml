@@ -198,7 +198,7 @@
             <selenide.fastSetValue>true</selenide.fastSetValue>
             <!--<selenide.browserSize>1920x1080</selenide.browserSize>-->
 
-              <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+<!--              <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>-->
 
           </systemPropertyVariables>
           <trimStackTrace>false</trimStackTrace>
