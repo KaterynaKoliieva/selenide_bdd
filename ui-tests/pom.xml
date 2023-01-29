@@ -99,6 +99,19 @@
       <version>${cucumber.version}</version>
       <scope>test</scope>
     </dependency>
+
+<!--    <dependency>-->
+<!--      <groupId>io.qameta.allure</groupId>-->
+<!--      <artifactId>allure-cucumber7-jvm</artifactId>-->
+<!--      <version>2.19.0</version>-->
+<!--    </dependency>-->
+
+<!--    <dependency>-->
+<!--      <groupId>io.qameta.allure</groupId>-->
+<!--      <artifactId>allure-junit5</artifactId>-->
+<!--      <version>2.20.0</version>-->
+<!--    </dependency>-->
+
     <dependency>
       <groupId>io.qameta.allure</groupId>
       <artifactId>allure-cucumber-jvm</artifactId>
@@ -122,25 +135,34 @@
   <build>
     <plugins>
 <!--      my version start-->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <version>1.8</version>
-        <executions>
-          <execution>
-            <id>add-test-source</id>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>add-test-source</goal>
-            </goals>
-            <configuration>
-              <sources>
-                <source>ui-tests/src/test</source>
-              </sources>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
+<!--      <plugin>-->
+<!--        <groupId>org.codehaus.mojo</groupId>-->
+<!--        <artifactId>build-helper-maven-plugin</artifactId>-->
+<!--        <version>1.8</version>-->
+<!--        <executions>-->
+<!--          <execution>-->
+<!--            <id>add-test-source</id>-->
+<!--            <phase>generate-sources</phase>-->
+<!--            <goals>-->
+<!--              <goal>add-test-source</goal>-->
+<!--            </goals>-->
+<!--            <configuration>-->
+<!--              <sources>-->
+<!--                <source>ui-tests/src/test</source>-->
+<!--              </sources>-->
+<!--            </configuration>-->
+<!--          </execution>-->
+<!--        </executions>-->
+<!--      </plugin>-->
+
+<!--      <plugin>-->
+<!--        <groupId>io.qameta.allure</groupId>-->
+<!--        <artifactId>allure-maven</artifactId>-->
+<!--        <version>2.10.0</version>-->
+<!--        <configuration>-->
+<!--          <reportVersion>2.6.0</reportVersion>-->
+<!--        </configuration>-->
+<!--      </plugin>-->
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -175,6 +197,9 @@
             <selenide.startMaximized>false</selenide.startMaximized>
             <selenide.fastSetValue>true</selenide.fastSetValue>
             <!--<selenide.browserSize>1920x1080</selenide.browserSize>-->
+
+              <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+
           </systemPropertyVariables>
           <trimStackTrace>false</trimStackTrace>
 
@@ -197,12 +222,12 @@
             <version>${aspectj.version}</version>
           </dependency>
         </dependencies>
+
       </plugin>
       <plugin>
         <groupId>io.qameta.allure</groupId>
         <artifactId>allure-maven</artifactId>
         <version>${allure.maven}</version>
-
       </plugin>
     </plugins>
 
