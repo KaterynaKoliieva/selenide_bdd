@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "classpath:features",
         glue = {"com.epam.jdi.bdd", "cucumberTests"},
-//        plugin = {"pretty", "io.qameta.allure.cucumberjvm.AllureCucumberJvm"},
+        plugin = {"pretty", "io.qameta.allure.cucumberjvm.AllureCucumberJvm"},
         tags = "@LogInTest, @LogOutTest, @RegistrationTest, @ShoppingCartTest"
 )
 

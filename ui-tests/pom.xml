@@ -100,11 +100,11 @@
       <scope>test</scope>
     </dependency>
 
-    <dependency>
-      <groupId>io.qameta.allure</groupId>
-      <artifactId>allure-cucumber7-jvm</artifactId>
-      <version>2.19.0</version>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>io.qameta.allure</groupId>-->
+<!--      <artifactId>allure-cucumber7-jvm</artifactId>-->
+<!--      <version>2.19.0</version>-->
+<!--    </dependency>-->
 
 <!--    <dependency>-->
 <!--      <groupId>io.qameta.allure</groupId>-->
@@ -112,11 +112,11 @@
 <!--      <version>2.20.0</version>-->
 <!--    </dependency>-->
 
-<!--    <dependency>-->
-<!--      <groupId>io.qameta.allure</groupId>-->
-<!--      <artifactId>allure-cucumber-jvm</artifactId>-->
-<!--      <version>${allurecucumber.version}</version>-->
-<!--    </dependency>-->
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-cucumber-jvm</artifactId>
+      <version>${allurecucumber.version}</version>
+    </dependency>
 
 
     <dependency>
@@ -171,9 +171,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
         <configuration>
-<!--          was 1.8-->
-          <source>8</source>
-          <target>8</target>
+          <source>1.8</source>
+          <target>1.8</target>
         </configuration>
       </plugin>
       <plugin>
@@ -188,19 +187,19 @@
         <version>${jetty.version}</version>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
+<!--        <groupId>org.apache.maven.plugins</groupId>-->
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.22.2</version>
         <configuration>
-          <includes>
-            <include>**/RunTest*.java</include>
-          </includes>
+<!--          <includes>-->
+<!--            <include>**/RunTest*.java</include>-->
+<!--          </includes>-->
           <systemPropertyVariables>
-            <argLine>
-              -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-              -Dcucumber.options="- -plugin io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
-            </argLine>
-            <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+<!--            <argLine>-->
+<!--              -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"-->
+<!--              -Dcucumber.options="- -plugin io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"-->
+<!--            </argLine>-->
+<!--            <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>-->
             <junit.jupiter.extensions.autodetection.enabled>true</junit.jupiter.extensions.autodetection.enabled>
             <selenide.browser>chrome</selenide.browser>
             <selenide.timeout>4000</selenide.timeout>
@@ -214,15 +213,15 @@
           </systemPropertyVariables>
           <trimStackTrace>false</trimStackTrace>
 
-<!--            <argLine>-->
-<!--              ${aspectj.args}-->
-<!--              -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"-->
-<!--              -Dcucumber.options="&#45;&#45;plugin io.qameta.allure.cucumberjvm.AllureCucumberJvm"-->
-<!--            </argLine>-->
+            <argLine>
+              ${aspectj.args}
+              -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+              -Dcucumber.options="--plugin io.qameta.allure.cucumberjvm.AllureCucumberJvm"
+            </argLine>
 
-<!--          <includes>-->
-<!--            <include>**/RunTest*.java</include>-->
-<!--          </includes>-->
+          <includes>
+            <include>**/RunTest*.java</include>
+          </includes>
           <testFailureIgnore>true</testFailureIgnore>
         </configuration>
 
@@ -235,14 +234,14 @@
         </dependencies>
 
       </plugin>
-<!--      <plugin>-->
-<!--        <groupId>io.qameta.allure</groupId>-->
-<!--        <artifactId>allure-maven</artifactId>-->
-<!--        <version>${allure.maven}</version>-->
-<!--        <configuration>-->
-<!--          <reportVersion>2.10.0</reportVersion>-->
-<!--        </configuration>-->
-<!--      </plugin>-->
+      <plugin>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+        <version>${allure.maven}</version>
+        <configuration>
+          <reportVersion>2.10.0</reportVersion>
+        </configuration>
+      </plugin>
     </plugins>
 
     <resources>
@@ -256,13 +255,13 @@
     </resources>
   </build>
 
-<!--  <reporting>-->
-<!--    <excludeDefaults>true</excludeDefaults>-->
-<!--    <plugins>-->
-<!--      <plugin>-->
-<!--        <groupId>io.qameta.allure</groupId>-->
-<!--        <artifactId>allure-maven</artifactId>-->
-<!--      </plugin>-->
-<!--    </plugins>-->
-<!--  </reporting>-->
+  <reporting>
+    <excludeDefaults>true</excludeDefaults>
+    <plugins>
+      <plugin>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+      </plugin>
+    </plugins>
+  </reporting>
 </project>
