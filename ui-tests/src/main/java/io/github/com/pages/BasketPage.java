@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class BasketPage extends WebPage {
 
-    public static SelenideElement selectedDeliverButton = $("#trolley_page_move_item_to_delivery_906KV"),
+    public static SelenideElement selectedDeliverButton = $(By.xpath("//a[@id='trolley_page_move_item_to_delivery_906KV']")),
             priceUnderHeadingField1 = $("#CPC_trolley_page_product_unit_price_1"),
             totalPriceField1 = $("#CPC_trolley_page_product_total_price_1"),
             priceUnderHeadingField2 = $("#trolley_page_product_unit_price_1"),
