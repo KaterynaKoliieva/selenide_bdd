@@ -225,8 +225,8 @@ public class UserStepdefs {
 
     @And("^click the Deliver button for the desired first product$")
     public void clickTheDeliverButtonForTheDesiredFirstProduct() {
-        sleep(4000);
-        deliverButton.click();
+        sleep(2000);
+        deliverButton.get(0).click();
         //if(ProductPage.continueShoppingButton.isDisplayed())
             ProductPage.continueShoppingButton.click();
     }
@@ -234,7 +234,7 @@ public class UserStepdefs {
     @And("^click the Click and Collect button for the desired second product$")
     public void clickTheClickAndCollectButtonForTheDesiredSecondProduct() {
         sleep(1000);
-        clickAndCollectButton.click();
+        clickAndCollectButton.get(1).click();
     }
 
     @And("^enter the \"([^\"]*)\" in the Find Stores Field$")
