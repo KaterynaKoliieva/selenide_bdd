@@ -168,7 +168,7 @@ public class UserStepdefs {
     public void chooseTitle() {
         sleep(2000);
         int rndNumber = randomNumber(selectTitleButton.size());
-        sleep(3000);
+        sleep(2000);
         selectTitleButton.get(rndNumber).click();
     }
 
