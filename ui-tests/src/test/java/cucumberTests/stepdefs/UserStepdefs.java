@@ -261,13 +261,13 @@ public class UserStepdefs {
     @And("^check if the Delivery button is selected for the first product$")
     public void checkIfTheDeliveryButtonIsSelectedForTheFirstProduct() {
         sleep(2000);
-        selectedDeliverButton.shouldBe(Condition.enabled);
+        selectedDeliverButton.shouldBe(Condition.selected);
     }
 
     @And("^check if the Click And Collect button is selected for the second product$")
     public void checkIfTheClickAndCollectButtonIsSelectedForTheSecondProduct() {
         sleep(2000);
-        selectedClickAndCollectButton.shouldBe(Condition.enabled);
+        selectedClickAndCollectButton.shouldBe(Condition.selected);
     }
 
     @And("^check Sub Total Field$")
