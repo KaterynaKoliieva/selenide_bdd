@@ -205,6 +205,7 @@ public class UserStepdefs {
 
     @Then("^click the Continue Shopping button$")
     public void clickTheContinueShoppingButton() {
+        sleep(1000);
         continueShoppingButton.click();
     }
 
@@ -224,7 +225,7 @@ public class UserStepdefs {
 
     @And("^click the Deliver button for the desired first product$")
     public void clickTheDeliverButtonForTheDesiredFirstProduct() {
-        sleep(2000);
+        sleep(4000);
         deliverButton.click();
         //if(ProductPage.continueShoppingButton.isDisplayed())
             ProductPage.continueShoppingButton.click();
