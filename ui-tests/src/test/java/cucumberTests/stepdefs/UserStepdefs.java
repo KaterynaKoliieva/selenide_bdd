@@ -166,9 +166,9 @@ public class UserStepdefs {
 
     @And("^choose Title$")
     public void chooseTitle() {
-        sleep(2000);
+        sleep(4000);
         int rndNumber = randomNumber(selectTitleButton.size());
-        sleep(2000);
+        sleep(4000);
         selectTitleButton.get(rndNumber).click();
     }
 
@@ -266,7 +266,7 @@ public class UserStepdefs {
 
     @And("^check if the Click And Collect button is selected for the second product$")
     public void checkIfTheClickAndCollectButtonIsSelectedForTheSecondProduct() {
-        sleep(1000);
+        sleep(2000);
         selectedClickAndCollectButton.shouldBe(Condition.enabled);
     }
 
