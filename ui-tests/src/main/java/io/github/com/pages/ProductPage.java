@@ -11,8 +11,9 @@ import static com.codeborne.selenide.Selenide.$$;
 public class ProductPage extends WebPage {
 
     public static SelenideElement //deliverButton = $("#product_add_button_906KV"),
-            continueShoppingButton = $("#continue_button_btn"),
-           // clickAndCollectButton = $("#add_for_collection_button_451GF"),
+           // continueShoppingButton = $("#continue_button_btn"),
+            continueShoppingButton = $(By.xpath("//button[@class='DtE_nS UvZo21 RgZO2i Y1shPH qidZSw JYOZmb']")),
+    // clickAndCollectButton = $("#add_for_collection_button_451GF"),
             headerNames = $(By.xpath("//h3[@class='lii__title']"));
 
 
