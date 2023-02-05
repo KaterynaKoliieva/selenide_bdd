@@ -164,6 +164,7 @@ public class UserStepdefs {
         postcodeButton.click();
         postcodeButton.sendKeys(defaultPostcode);
         sleep(1000);
+        findAddressButton.click();
     }
 
     @And("^choose Title$")
