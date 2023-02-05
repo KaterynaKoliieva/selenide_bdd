@@ -10,7 +10,7 @@ public class Contacts extends DataClass<Contacts> {
     public String profession = "Decorator";
     public String postcode = "E1 6AN";
     public String address = "2-4 Brushfield Street, LONDON, E1 6AN";
-    public String password = "CucumberOnion1234";
+    public static String password = "CucumberOnion1234";
     public String retypePassword = "CucumberOnion1234";
 
 }

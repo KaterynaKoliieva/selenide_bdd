@@ -8,6 +8,9 @@ public class Users {
 
     public static final String defaultEmail = "1660074366230cucumber@test.com";
     public static final String defaultPassword = "1660074366230cucumber";
+
+    public static final String passwordNewUser = "helloworld";
+    public static final String passwordLessTnan8 = "1234";
     public static final String defaultFirstName = "Cucumber";
     public static final String defaultLastName = "Onion";
 
@@ -16,6 +19,36 @@ public class Users {
         c.password = defaultPassword;
         c.firstName = defaultFirstName;
         c.lastName = defaultLastName;
+    });
+
+    public static User INCORRECT_USER = new User().set(c -> {
+        c.email = "just_smile@test.com";
+        c.password = "helloworld123";
+    });
+    public static User EMPTY_PASSWORD = new User().set(c -> {
+        c.email = defaultEmail;
+        c.password = "";
+    });
+    public static User INCORRECT_PASSWORD = new User().set(c -> {
+        c.email = defaultEmail;
+        c.password = "12345";
+    });
+
+    public static User EMAIL_WITHOUT_ASPERAND = new User().set(c -> {
+        c.email = "1660074366230cucumbertest.com";
+        c.password = defaultPassword;
+    });
+    public static User INCORRECT_EMAIL = new User().set(c -> {
+        c.email = "hello_friends@test.com";
+        c.password = defaultPassword;
+    });
+    public static User EMPTY_EMAIL = new User().set(c -> {
+        c.email = "";
+        c.password = defaultPassword;
+    });
+    public static User EMPTY_FIELDS = new User().set(c -> {
+        c.email = "";
+        c.password = "";
     });
 
     public static final String randomFirstName = randomName();

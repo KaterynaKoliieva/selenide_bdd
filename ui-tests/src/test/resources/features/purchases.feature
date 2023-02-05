@@ -4,24 +4,39 @@ Feature: Purchases
   Background: Registration of a new user
     Given check accept cookies button
     When click the Register now button
-    And enter email in the Email Address field
-    And click on the Continue button
-    And choose Title
-    And enter first name in the First Name field
-    And enter last name in the Last Name field
-    And choose Profession
-    And enter Postcode
-    And select Address
-    And enter password and retypes it in the Password and Re-type Password fields
-    And click on the Register now button
-    Then click the Continue Shopping button
 
    @RegistrationTest
    Scenario: Check the registration of a new user
+     And check email field
+     And enter email in the Email Address field
+     And click on the Continue button
+     And check when all fields are empty
+     And choose Title
+     And enter first name in the First Name field
+     And enter last name in the Last Name field
+     And choose Profession
+     And enter Postcode
+     And check postcode section
+     And select Address
+     And check password section
+     And enter password and retypes it in the Password and Re-type Password fields
+     And click on the Register now button
+     Then click the Continue Shopping button
      Then User sees "Cucumber Onion" in the Account field
 
     @ShoppingCartTest
     Scenario: Check the shopping cart
+      And enter email in the Email Address field
+      And click on the Continue button
+      And choose Title
+      And enter first name in the First Name field
+      And enter last name in the Last Name field
+      And choose Profession
+      And enter Postcode
+      And select Address
+      And enter password and retypes it in the Password and Re-type Password fields
+      And click on the Register now button
+      Then click the Continue Shopping button
       Given enter the "drills" of the product in the search field
       And click the Deliver button for the desired first product
       And click the Click and Collect button for the desired second product

@@ -13,6 +13,8 @@ public class LogInPage extends WebPage {
             emailField= $("#email-existing"),
             passwordField = $("#password-field"),
             sighInButton = $("#sign-in-btn"),
+            infoField = $(By.xpath("//div[@class='infobox__block']")),
+            messageError = $(By.xpath("//p[@class='fm-item__message--error']")),
             logOutButton = $("#header_link_sign_out"),
             acceptCookiesButton = $(By.xpath("//a[@class='call']")),
             iframe = $(By.xpath("//iframe[@class='truste_popframe']")),

@@ -2,11 +2,3 @@ target/
 *.iml
 .idea/
 .gradle/
-target/
-*.zip
-*.exe
-.logs/
-*.xlsx
-.allure/
-allure-results/
-build

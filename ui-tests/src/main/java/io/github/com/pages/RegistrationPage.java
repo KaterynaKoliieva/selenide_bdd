@@ -11,6 +11,8 @@ import static com.codeborne.selenide.Selenide.$$;
 public class RegistrationPage extends WebPage {
 
     public static SelenideElement emailField = $("#email-input"),
+            messageError = $(By.xpath("//p[@class='fm-item__message--error']")),
+            infoField = $(By.xpath("//div[@class='infobox__block']")),
             firstNameButton = $("#firstName"),
             lastNameButton = $("#lastName"),
             postcodeButton = $("#contact-search-postcode"),
@@ -23,6 +25,7 @@ public class RegistrationPage extends WebPage {
             continueShoppingButton = $(By.xpath("//a[@class='btn btn--primary sm-fill btn--xl']"));
     public static ElementsCollection selectTitleButton = $$(By.xpath("//select[@id='newTitle']/option")),
             selectProfessionButton = $$(By.xpath("//select[@id='profession']/option")),
-            selectAddressButton = $$(By.xpath("//select[contains(@id,'contact-address')]/option"));
+            selectAddressButton = $$(By.xpath("//select[contains(@id,'contact-address')]/option")),
+            messageErrorList = $$(By.xpath("//p[@class='fm-item__message--error']"));
 
 }

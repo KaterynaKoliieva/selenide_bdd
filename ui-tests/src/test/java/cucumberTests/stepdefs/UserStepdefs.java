@@ -9,6 +9,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import io.github.com.entities.Contacts;
 import io.github.com.entities.Users;
 import io.github.com.pages.ProductPage;
 import io.github.com.pages.RegistrationPage;
@@ -25,6 +26,8 @@ import static io.github.com.pages.CheckStockPage.*;
 import static io.github.com.pages.HomePage.logOutButton;
 import static io.github.com.pages.HomePage.*;
 import static io.github.com.pages.LogInPage.emailField;
+import static io.github.com.pages.LogInPage.infoField;
+import static io.github.com.pages.LogInPage.messageError;
 import static io.github.com.pages.LogInPage.registerNowButton;
 import static io.github.com.pages.LogInPage.*;
 import static io.github.com.pages.LoginPageFrame.acceptCookiesButton;
@@ -81,7 +84,7 @@ public class UserStepdefs {
 
     @And("^check accept cookies button$")
     public void checkAcceptCookiesButton() {
-        sleep(1000);
+        sleep(2000);
         try{
             if(iframe.isDisplayed()){
                 switchTo().defaultContent();
@@ -161,30 +164,23 @@ public class UserStepdefs {
         postcodeButton.click();
         postcodeButton.sendKeys(defaultPostcode);
         sleep(1000);
-        findAddressButton.click();
     }
 
     @And("^choose Title$")
     public void chooseTitle() {
-        sleep(4000);
-        int rndNumber = randomNumber(selectTitleButton.size());
-        sleep(4000);
+        int rndNumber = 2;
         selectTitleButton.get(rndNumber).click();
     }
 
     @And("^choose Profession$")
     public void chooseProfession() {
-        sleep(2000);
-        int rndNumber = randomNumber(selectProfessionButton.size());
-        sleep(2000);
+        int rndNumber = 2;
         selectProfessionButton.get(rndNumber).click();
     }
 
     @And("^select Address$")
     public void selectAddress(){
-        sleep(2000);
-        int rndNumber = randomNumber(selectAddressButton.size());
-        sleep(2000);
+        int rndNumber = 2;
         selectAddressButton.get(rndNumber).click();
     }
 
@@ -259,15 +255,15 @@ public class UserStepdefs {
     }
 
     @And("^check if the Delivery button is selected for the first product$")
-    public void checkIfTheDeliveryButtonIsSelectedForTheFirstProduct() {
+    public void checkIfTheDeliverButtonIsSelectedForTheFirstProduct() {
         sleep(2000);
-        selectedDeliverButton.shouldBe(Condition.selected);
+        selectedDeliverButton.shouldHave(Condition.text("Deliver"));
     }
 
     @And("^check if the Click And Collect button is selected for the second product$")
     public void checkIfTheClickAndCollectButtonIsSelectedForTheSecondProduct() {
         sleep(2000);
-        selectedClickAndCollectButton.shouldBe(Condition.selected);
+        selectedClickAndCollectButton.shouldHave(Condition.text("Click"));
     }
 
     @And("^check Sub Total Field$")
@@ -294,9 +290,171 @@ public class UserStepdefs {
                 Double.parseDouble(subTotalField.getText().replace("£", "")), 0.00);
     }
 
+    @And("^check the login form with incorrect data$")
+    public void checkTheLoginFormWithIncorrectData() throws InterruptedException {
+        emailField.click();
+        emailField.sendKeys(INCORRECT_USER.email);
+        passwordField.click();
+        passwordField.sendKeys(INCORRECT_USER.password);
+        sighInButton.click();
+        infoField.shouldHave(Condition.text("Your email and/or password is not recognised"));
+        emailField.clear();
+        passwordField.clear();
+        Thread.sleep(2000);
+    }
+
+    @And("^check the login form with empty password$")
+    public void checkTheLoginFormWithEmptyPassword() throws InterruptedException {
+        emailField.click();
+        emailField.sendKeys(EMPTY_PASSWORD.email);
+        passwordField.click();
+        passwordField.sendKeys(EMPTY_PASSWORD.password);
+        sighInButton.click();
+        messageError.shouldHave(Condition.text("enter the password"));
+        emailField.clear();
+        passwordField.clear();
+        Thread.sleep(2000);
+    }
+
+    @And("^check the login form with incorrect password$")
+    public void checkTheLoginFormWithIncorrectPassword() throws InterruptedException {
+        emailField.click();
+        emailField.sendKeys(INCORRECT_PASSWORD.email);
+        passwordField.click();
+        passwordField.sendKeys(INCORRECT_PASSWORD.password);
+        sighInButton.click();
+        infoField.shouldHave(Condition.text("Your email and/or password is not recognised"));
+        emailField.clear();
+        passwordField.clear();
+        Thread.sleep(2000);
+    }
+
+    @And("^check the login form with email without asperand$")
+    public void checkTheLoginFormWithEmailWithoutAsperand() throws InterruptedException {
+        emailField.click();
+        emailField.sendKeys(EMAIL_WITHOUT_ASPERAND.email);
+        passwordField.click();
+        passwordField.sendKeys(EMAIL_WITHOUT_ASPERAND.password);
+        sighInButton.click();
+        messageError.shouldHave(Condition.text("Email address is missing the '@' symbol"));
+        emailField.clear();
+        passwordField.clear();
+        Thread.sleep(2000);
+    }
+
+    @And("^check the login form with incorrect email$")
+    public void checkTheLoginFormWithIncorrectEmail() throws InterruptedException {
+        emailField.click();
+        emailField.sendKeys(INCORRECT_EMAIL.email);
+        passwordField.click();
+        passwordField.sendKeys(INCORRECT_EMAIL.password);
+        sighInButton.click();
+        infoField.shouldHave(Condition.text("Your email and/or password is not recognised"));
+        emailField.clear();
+        passwordField.clear();
+        Thread.sleep(2000);
+    }
+
+    @And("^check the login form with empty email$")
+    public void checkTheLoginFormWithEmptyEmail() throws InterruptedException {
+        emailField.click();
+        emailField.sendKeys(EMPTY_EMAIL.email);
+        passwordField.click();
+        passwordField.sendKeys(EMPTY_EMAIL.password);
+        sighInButton.click();
+        messageError.shouldHave(Condition.text("enter an email address"));
+        emailField.clear();
+        passwordField.clear();
+        Thread.sleep(2000);
+    }
+
+    @And("^check the login form with empty fields$")
+    public void checkTheLoginFormWithEmptyFields() throws InterruptedException {
+        emailField.click();
+        emailField.sendKeys(EMPTY_FIELDS.email);
+        passwordField.click();
+        passwordField.sendKeys(EMPTY_FIELDS.password);
+        sighInButton.click();
+        messageError.shouldHave(Condition.text("enter an email address"));
+        emailField.clear();
+        passwordField.clear();
+        Thread.sleep(2000);
+    }
+
+    @And("^check email field$")
+    public void checkEmailField() {
+        String withoutAsperandEmail = EMAIL_WITHOUT_ASPERAND.email;
+        String registeredUser = DEFAULT_USER.email;
+
+        continueButton.click();
+        sleep(1000);
+        RegistrationPage.messageError.shouldHave(Condition.text("Please enter an email address"));
+
+        RegistrationPage.emailField.sendKeys(registeredUser);
+        continueButton.click();
+        sleep(1000);
+        RegistrationPage.infoField.shouldHave(Condition.text("Sorry, we cannot register you"));
+        RegistrationPage.emailField.clear();
+
+        sleep(1000);
+        RegistrationPage.emailField.sendKeys(withoutAsperandEmail);
+        continueButton.click();
+        sleep(1000);
+        RegistrationPage.messageError.shouldHave(Condition.text("Email address is missing the '@' symbol"));
+        RegistrationPage.emailField.clear();
+    }
+
+    @And("^check when all fields are empty$")
+    public void checkWhenAllFieldsAreEmpty() {
+        sleep(1000);
+        RegistrationPage.registerNowButton.click();
+        sleep(1000);
+        messageErrorList.get(0).shouldHave(Condition.text("Please choose your title"));
+        messageErrorList.get(1).shouldHave(Condition.text("Please enter your first name"));
+        messageErrorList.get(2).shouldHave(Condition.text("Please enter your last name"));
+        messageErrorList.get(3).shouldHave(Condition.text("Please choose your profession"));
+        messageErrorList.get(4).shouldHave(Condition.text("Please enter a postcode"));
+        messageErrorList.get(5).shouldHave(Condition.text("not enough characters"));
+        messageErrorList.get(6).shouldHave(Condition.text("Please re-enter your password"));
+    }
+
+    @And("^check postcode section$")
+    public void checkPostcodeSection() {
+        String password = Contacts.password;
+        passwordButton.sendKeys(password);
+        retypePasswordButton.sendKeys(password);
+        RegistrationPage.registerNowButton.click();
+        sleep(1000);
+        messageError.shouldHave(Condition.text("Please enter your address"));
+        findAddressButton.click();
+        RegistrationPage.registerNowButton.click();
+
+        sleep(1000);
+        messageError.shouldHave(Condition.text("Please enter your address"));
+    }
+
+    @And("^check password section$")
+    public void checkPasswordSection() {
+        passwordButton.clear();
+        retypePasswordButton.clear();
+
+        passwordButton.sendKeys(passwordLessTnan8);
+        RegistrationPage.registerNowButton.click();
+        sleep(1000);
+        RegistrationPage.messageError.shouldHave(Condition.text("not enough characters"));
+        passwordButton.clear();
+
+        passwordButton.sendKeys(passwordNewUser);
+        retypePasswordButton.sendKeys(passwordLessTnan8);
+        RegistrationPage.registerNowButton.click();
+        sleep(1000);
+        RegistrationPage.messageError.shouldHave(Condition.text("Your passwords do not match, please try again"));
+        passwordButton.clear();
+        retypePasswordButton.clear();
+    }
+
     @After
     public void tearDown() {
         Selenide.close();
     }
-
 }
